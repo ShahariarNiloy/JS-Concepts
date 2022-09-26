@@ -74,7 +74,7 @@ const result = outerFunc();
 2 // y
 ```
 This time, console logs in ```innerFunc``` has not been executed. Rather `innerFunc` has been returned by the `outerFunc` and the ```result``` variable contains the ```innerFunc```.<br>
-So now, we can call ```innerFunc``` by calling ```result()```.
+So now, even after execution of `outerFunc`, we can call ```innerFunc``` by calling ```result()``` and this `innerFunc` can access it's parent functions variable. 
 
 ```js
 result();
@@ -105,3 +105,68 @@ result();
 ```
 
 Each time calling the `result()` invoke `innerFunc` and that `innerFunc` access the variables.
+
+#### Questions
+
+What will log to console the following code snippet:
+```js
+let count = 0;
+(function immediate() {
+  if (count === 0) {
+    let count = 1;
+    console.log(count); // What is logged?
+  }
+  console.log(count); // What is logged?
+})();
+```
+
+##### Answer
+
+```js
+1
+0
+```
+
+What will log to console the following code snippet:
+
+```js
+for (var i = 0; i < 3; i++) {
+  setTimeout(function log() {
+    console.log(i); // What is logged?
+  }, 1000);
+}
+```
+##### Answer
+
+```js
+3
+3
+3
+```
+What will log to console the following code snippet:
+```js
+function createIncrement() {
+  let count = 0;
+  function increment() { 
+    count++;
+  }
+  let message = `Count is ${count}`;
+  function log() {
+    console.log(message);
+  }
+  
+  return [increment, log];
+}
+const [increment, log] = createIncrement();
+increment(); 
+increment(); 
+increment(); 
+log(); // What is logged?
+```
+
+##### Answer
+
+```js
+Count is 0
+```
+
