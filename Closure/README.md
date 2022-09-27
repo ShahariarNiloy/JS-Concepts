@@ -163,7 +163,6 @@ increment();
 increment(); 
 log(); // What is logged?
 ```
-
 ##### Answer
 
 ```js
