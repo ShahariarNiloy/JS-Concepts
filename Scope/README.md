@@ -99,7 +99,6 @@ What will be the output of the three log statements and in what order?
   console.log(two);
 })();
 ```
-
 ##### Answer
 
 ```js
